@@ -78,7 +78,7 @@ const Signin = () => {
     <Layout>
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
-        <h1>Signup</h1>
+        <h1>Signin</h1>
         {signinForm()}
       </div>
     </Layout>
