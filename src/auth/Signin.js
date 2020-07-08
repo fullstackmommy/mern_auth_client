@@ -34,7 +34,7 @@ const Signin = () => {
           password: "",
           buttonText: "Submitted"
         });
-        toast.success(`Hey, ${response.data.user.name}, welcome back!`);
+        toast.success(`Welcome back, ${response.data.user.name}!`);
       })
       .catch(error => {
         console.log("SIGN-IN ERROR", error.response.data);
