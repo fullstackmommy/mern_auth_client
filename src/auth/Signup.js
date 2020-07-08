@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -7,9 +6,9 @@ import Layout from "../core/Layout";
 
 const Signup = () => {
   const [values, setValues] = useState({
-    name: "nicole",
-    email: "nicole.budiman@gmail.com",
-    password: "qwqwqwqw",
+    name: "",
+    email: "",
+    password: "",
     buttonText: "Submit"
   });
 
