@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { authenticate, isAuth } from "./helpers";
 import "react-toastify/dist/ReactToastify.min.css";
 import Layout from "../core/Layout";
 
@@ -28,13 +29,15 @@ const Signin = () => {
     })
       .then(response => {
         console.log("SIGN-IN SUCCESS", response);
-        setValues({
-          ...values,
-          email: "",
-          password: "",
-          buttonText: "Submitted"
+        authenticate(response, () => {
+          setValues({
+            ...values,
+            email: "",
+            password: "",
+            buttonText: "Submitted"
+          });
+          toast.success(`Welcome back, ${response.data.user.name}!`);
         });
-        toast.success(`Welcome back, ${response.data.user.name}!`);
       })
       .catch(error => {
         console.log("SIGN-IN ERROR", error.response.data);
@@ -78,6 +81,7 @@ const Signin = () => {
     <Layout>
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
+        {isAuth() ? <Redirect to="/" /> : null}
         <h1>Signin</h1>
         {signinForm()}
       </div>

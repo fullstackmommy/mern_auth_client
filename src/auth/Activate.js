@@ -19,13 +19,9 @@ const Activate = ({ match }) => {
     if (token) {
       setValues({ ...values, name, token });
     }
-  }, []);
+  }, [match.params.token, values]);
 
   const { name, token, show } = values;
-
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -44,7 +40,6 @@ const Activate = ({ match }) => {
       })
       .catch(error => {
         console.log("ACCOUNT ACTIVATION ERROR", error.response.data.error);
-
         toast.error(error.response.data.error);
       });
   };
