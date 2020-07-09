@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { isAuth, getCookie, signout } from "../auth/helpers";
+import { isAuth, getCookie, signout, updateUser } from "../auth/helpers";
 import "react-toastify/dist/ReactToastify.min.css";
 import Layout from "../core/Layout";
 
@@ -51,23 +51,25 @@ const Private = ({ history }) => {
     event.preventDefault();
     setValues({ ...values, buttonText: "Submitting" });
     axios({
-      method: "POST",
-      url: `${process.env.REACT_APP_API}/signup`,
-      data: { name, email, password }
+      method: "PUT",
+      url: `${process.env.REACT_APP_API}/user/update`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: { name, password }
     })
       .then(response => {
-        console.log("UPDATE FORM SUCCESS", response);
-        setValues({
-          ...values,
-          name: "",
-          email: "",
-          password: "",
-          buttonText: "Submitted"
+        console.log("PROFILE UPDATE FORM SUCCESS", response);
+        updateUser(response, () => {
+          setValues({
+            ...values,
+            buttonText: "Submitted"
+          });
+          toast.success("Profile updated successfully");
         });
-        toast.success(response.data.message);
       })
       .catch(error => {
-        console.log("UPDATE FORM ERROR", error.response.data);
+        console.log("PROFILE UPDATE FORM ERROR", error.response.data.error);
         setValues({
           ...values,
           buttonText: "Submit"
