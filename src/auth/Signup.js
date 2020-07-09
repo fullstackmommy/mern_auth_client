@@ -52,7 +52,7 @@ const Signup = () => {
   const signupForm = () => (
     <form>
       <div className="form-group">
-        <table className="text-muted">Name</table>
+        <label className="text-muted">Name</label>
         <input
           onChange={handleChange("name")}
           type="text"
@@ -61,7 +61,7 @@ const Signup = () => {
         />
       </div>
       <div className="form-group">
-        <table className="text-muted">Email</table>
+        <label className="text-muted">Email</label>
         <input
           onChange={handleChange("email")}
           type="text"
@@ -70,7 +70,7 @@ const Signup = () => {
         />
       </div>
       <div className="form-group">
-        <table className="text-muted">Password</table>
+        <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}
           type="password"

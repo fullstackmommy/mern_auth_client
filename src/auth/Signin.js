@@ -55,7 +55,7 @@ const Signin = ({ history }) => {
   const signinForm = () => (
     <form>
       <div className="form-group">
-        <table className="text-muted">Email</table>
+        <label className="text-muted">Email</label>
         <input
           onChange={handleChange("email")}
           type="text"
@@ -64,7 +64,7 @@ const Signin = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <table className="text-muted">Password</table>
+        <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}
           type="password"
